@@ -100,14 +100,33 @@ export const AuthProvider = ({ children }) => {
   const updateOnboarding = async (onboardingData) => {
     setLoading(true);
     try {
-      const res = await fetch('/api/auth/onboarding', {
+      let activeToken = token || localStorage.getItem('tutorpro_token');
+      if (!activeToken) {
+        const demo = await switchDemoPersona('tutor');
+        activeToken = demo.token;
+      }
+      let res = await fetch('/api/auth/onboarding', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${activeToken}`
         },
         body: JSON.stringify(onboardingData)
       });
+
+      // If token expired or rejected by server (401), refresh demo session and retry seamlessly
+      if (res.status === 401) {
+        const demo = await switchDemoPersona('tutor');
+        res = await fetch('/api/auth/onboarding', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${demo.token}`
+          },
+          body: JSON.stringify(onboardingData)
+        });
+      }
+
       const data = await parseAuthResponse(res, 'Onboarding failed');
       setUser(data.user);
       return data;

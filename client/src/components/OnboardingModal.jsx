@@ -4,7 +4,8 @@ import { X, CheckCircle2, ArrowRight, Sparkles, Building, BookOpen, Users, Calen
 
 export default function OnboardingModal({ isOpen, onClose, onComplete }) {
   const [step, setStep] = useState(1);
-  const { updateOnboarding, user } = useAuth();
+  const [submitting, setSubmitting] = useState(false);
+  const { updateOnboarding, user, token, switchDemoPersona } = useAuth();
 
   const [formData, setFormData] = useState({
     academyName: user?.academyName || "Tanmoy's Mathematics Academy",
@@ -29,7 +30,11 @@ export default function OnboardingModal({ isOpen, onClose, onComplete }) {
   };
 
   const handleFinish = async () => {
+    setSubmitting(true);
     try {
+      if (!token) {
+        await switchDemoPersona('tutor');
+      }
       await updateOnboarding({
         academyName: formData.academyName,
         subject: formData.subject,
@@ -46,6 +51,8 @@ export default function OnboardingModal({ isOpen, onClose, onComplete }) {
       setStep(4); // celebration screen
     } catch (err) {
       alert('Error updating onboarding: ' + err.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -301,9 +308,10 @@ export default function OnboardingModal({ isOpen, onClose, onComplete }) {
             <button
               type="button"
               onClick={handleNext}
+              disabled={submitting}
               className="btn btn-primary"
             >
-              <span>{step === 3 ? 'Finish Setup' : 'Continue'}</span>
+              <span>{submitting ? 'Setting Up...' : (step === 3 ? 'Finish Setup' : 'Continue')}</span>
               <ArrowRight size={16} />
             </button>
           </div>
