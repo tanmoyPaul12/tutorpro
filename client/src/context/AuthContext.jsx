@@ -26,6 +26,26 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
+  const parseAuthResponse = async (res, defaultMsg = 'Operation failed') => {
+    const contentType = res.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || data.error || defaultMsg);
+      return data;
+    }
+    const text = await res.text();
+    if (!res.ok) {
+      if (res.status === 404) {
+        throw new Error('API server route not found (404). Please check backend server status.');
+      }
+      if (res.status === 502 || res.status === 503 || res.status === 504) {
+        throw new Error('Backend server is waking up on Render. Please wait ~30 seconds and try again.');
+      }
+      throw new Error(text.slice(0, 100) || `${defaultMsg} (${res.status})`);
+    }
+    return { message: text };
+  };
+
   const login = async (email, password) => {
     setLoading(true);
     try {
@@ -34,8 +54,7 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Login failed');
+      const data = await parseAuthResponse(res, 'Login failed');
       setToken(data.token);
       setUser(data.user);
       return data;
@@ -52,8 +71,7 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData)
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Registration failed');
+      const data = await parseAuthResponse(res, 'Registration failed');
       setToken(data.token);
       setUser(data.user);
       return data;
@@ -70,8 +88,7 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ persona })
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Persona switch failed');
+      const data = await parseAuthResponse(res, 'Persona switch failed');
       setToken(data.token);
       setUser(data.user);
       return data;
@@ -91,8 +108,7 @@ export const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify(onboardingData)
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || 'Onboarding failed');
+      const data = await parseAuthResponse(res, 'Onboarding failed');
       setUser(data.user);
       return data;
     } finally {
@@ -112,7 +128,7 @@ export const AuthProvider = ({ children }) => {
           body: JSON.stringify({ plan })
         });
         if (res.ok) {
-          const data = await res.json();
+          const data = await parseAuthResponse(res, 'Plan update failed');
           setUser(data.user);
           return data.user;
         }
