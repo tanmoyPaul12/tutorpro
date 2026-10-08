@@ -80,7 +80,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onSu
                 className="btn btn-secondary btn-sm"
                 style={{ fontSize: '0.75rem', padding: '6px', justifyContent: 'center' }}
               >
-                👨‍🏫 Tanmoy (Tutor)
+                👨‍🏫 Demo Tutor
               </button>
               <button
                 type="button"
@@ -162,7 +162,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onSu
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Tanmoy Paul"
+                    placeholder="Enter your full name"
                     className="form-input"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}

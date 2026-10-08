@@ -101,8 +101,8 @@ export default function ParentPortalView() {
             fontSize: '0.85rem'
           }}>
             <div style={{ color: 'var(--text-muted)' }}>Instructor / Academy</div>
-            <div style={{ fontWeight: 700 }}>{student.tutorName || 'Tanmoy Paul'}</div>
-            <div style={{ color: 'var(--primary)', fontSize: '0.78rem' }}>{student.academyName}</div>
+            <div style={{ fontWeight: 700 }}>{student.tutorName || 'Instructor'}</div>
+            <div style={{ color: 'var(--primary)', fontSize: '0.78rem' }}>{student.academyName || 'Tuition Academy'}</div>
           </div>
         </div>
       </div>

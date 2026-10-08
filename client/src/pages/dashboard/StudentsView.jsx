@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 export default function StudentsView({ onOpenWhatsAppModal }) {
-  const { token } = useAuth();
+  const { token, user } = useAuth();
   const [students, setStudents] = useState([]);
   const [batches, setBatches] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -261,7 +261,7 @@ export default function StudentsView({ onOpenWhatsAppModal }) {
                           studentName: std.name,
                           parentName: std.parentName,
                           phone: std.parentPhone,
-                          text: `Dear ${std.parentName}, this is an update from Tanmoy's Academy regarding ${std.name}. Current attendance: ${std.attendancePercentage}%. Feel free to reach out with any queries.`,
+                          text: `Dear ${std.parentName}, this is an update from ${user?.academyName || (user?.name ? `${user.name}'s Academy` : 'our Academy')} regarding ${std.name}. Current attendance: ${std.attendancePercentage}%. Feel free to reach out with any queries.`,
                           whatsappUrl: `https://wa.me/91${std.parentPhone}?text=${encodeURIComponent(`Dear ${std.parentName}, this is an update regarding ${std.name}.`)}`,
                           type: 'COMMUNICATION'
                         })}

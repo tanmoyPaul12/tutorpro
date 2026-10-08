@@ -8,7 +8,7 @@ export default function OnboardingModal({ isOpen, onClose, onComplete }) {
   const { updateOnboarding, user, token, switchDemoPersona } = useAuth();
 
   const [formData, setFormData] = useState({
-    academyName: user?.academyName || "Tanmoy's Mathematics Academy",
+    academyName: user?.academyName || '',
     subject: "Mathematics",
     studentCountTarget: 30,
     batchName: "Class 10 Mathematics",
@@ -103,7 +103,7 @@ export default function OnboardingModal({ isOpen, onClose, onComplete }) {
                   className="form-input"
                   value={formData.academyName}
                   onChange={(e) => setFormData({ ...formData, academyName: e.target.value })}
-                  placeholder="e.g. Tanmoy's Mathematics Academy"
+                  placeholder="e.g. Apex Coaching or Science Academy"
                 />
               </div>
 

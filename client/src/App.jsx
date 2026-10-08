@@ -28,7 +28,7 @@ function MainApp() {
   };
 
   const handleEnterDemo = async () => {
-    // Automatically sign in as Tanmoy Paul (Demo Tutor) and open dashboard
+    // Automatically sign in as Demo Tutor and open dashboard
     try {
       await switchDemoPersona('tutor');
       setView('dashboard');

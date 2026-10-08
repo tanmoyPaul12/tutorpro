@@ -52,7 +52,7 @@ export default function OverviewView({ onNavigateTab }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
             <span style={{ fontSize: '1.4rem' }}>👋</span>
             <h2 style={{ fontSize: '1.6rem', fontWeight: 800 }}>
-              Welcome back, {user?.name || 'Tanmoy'}!
+              Welcome back, {user?.name || 'Tutor'}!
             </h2>
             <span className="badge badge-success" style={{ fontSize: '0.72rem' }}>
               Academy Active

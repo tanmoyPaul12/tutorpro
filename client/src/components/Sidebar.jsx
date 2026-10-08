@@ -123,10 +123,10 @@ export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, o
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}>
-              {user?.name || 'Tanmoy Paul'}
+              {user?.name || 'Tutor Account'}
             </div>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-              {isParent ? 'Parent Account' : (user?.academyName || "Tanmoy's Academy")}
+              {isParent ? 'Parent Account' : (user?.academyName || "My Coaching")}
             </div>
           </div>
           {!isParent && (
