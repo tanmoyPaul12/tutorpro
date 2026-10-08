@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
-import { Sun, Moon, Sparkles, LayoutDashboard, UserCheck, ArrowRight, Menu, X, Zap } from 'lucide-react';
+import { Sun, Moon, Sparkles, LayoutDashboard, UserCheck, ArrowRight, Menu, X, Zap, LogOut } from 'lucide-react';
 
 export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection, currentView, setView }) {
   const { theme, toggleTheme } = useTheme();
@@ -144,14 +144,26 @@ export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection
           {currentView === 'landing' ? (
             <div className="nav-desktop-btn-hide" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               {isAuthenticated ? (
-                <button
-                  onClick={() => setView('dashboard')}
-                  className="btn btn-primary btn-sm"
-                  id="go-dashboard-btn"
-                >
-                  <LayoutDashboard size={16} />
-                  <span>Go to Dashboard</span>
-                </button>
+                <>
+                  <button
+                    onClick={() => setView('dashboard')}
+                    className="btn btn-primary btn-sm"
+                    id="go-dashboard-btn"
+                  >
+                    <LayoutDashboard size={16} />
+                    <span>Dashboard</span>
+                  </button>
+                  <button
+                    onClick={logout}
+                    className="btn btn-ghost btn-sm"
+                    style={{ color: 'var(--danger)', display: 'flex', alignItems: 'center', gap: '6px' }}
+                    title="Sign Out"
+                    id="nav-logout-btn"
+                  >
+                    <LogOut size={15} />
+                    <span>Log Out</span>
+                  </button>
+                </>
               ) : (
                 <>
                   <button
@@ -244,17 +256,30 @@ export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection
             </button>
 
             {isAuthenticated ? (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setView('dashboard');
-                }}
-                className="btn btn-secondary"
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                <LayoutDashboard size={16} />
-                <span>Go to Dashboard</span>
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setView('dashboard');
+                  }}
+                  className="btn btn-secondary"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  <LayoutDashboard size={16} />
+                  <span>Dashboard</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    logout();
+                  }}
+                  className="btn btn-ghost"
+                  style={{ width: '100%', justifyContent: 'center', color: 'var(--danger)', gap: '6px' }}
+                >
+                  <LogOut size={16} />
+                  <span>Log Out</span>
+                </button>
+              </div>
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                 <button

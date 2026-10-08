@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, onClose }) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const isParent = user?.role === 'PARENT';
   const plan = user?.subscriptionPlan || 'STARTER';
@@ -182,37 +182,61 @@ export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, o
 
       {/* Sidebar Footer */}
       <div style={{
-        padding: '14px 18px',
+        padding: '12px 14px',
         borderTop: '1px solid var(--border-subtle)',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        fontSize: '0.75rem',
-        color: 'var(--text-muted)'
+        flexDirection: 'column',
+        gap: '8px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#10b981' }} />
-          <span style={{ fontWeight: 600 }}>TutorPro OS</span>
-        </div>
-        <button
-          onClick={onBackHome}
-          title="Exit to Landing Page"
-          style={{
-            background: 'none',
-            border: 'none',
-            color: 'var(--text-muted)',
-            cursor: 'pointer',
-            padding: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            borderRadius: '6px',
-            transition: 'color var(--transition-fast)'
+        {/* <button
+          onClick={() => {
+            logout();
+            onBackHome?.();
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+          className="btn btn-ghost btn-sm"
+          style={{
+            width: '100%',
+            justifyContent: 'flex-start',
+            gap: '8px',
+            color: 'var(--danger)',
+            fontSize: '0.8125rem',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            cursor: 'pointer'
+          }}
+          title="Sign out of TutorPro"
         >
-          <LogOut size={14} />
-        </button>
+          <LogOut size={15} />
+          <span style={{ fontWeight: 600 }}>Log Out</span>
+        </button> */}
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          fontSize: '0.72rem',
+          color: 'var(--text-muted)',
+          padding: '2px 4px 0'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
+            <span style={{ fontWeight: 600 }}>TutorPro </span>
+          </div>
+          <button
+            onClick={onBackHome}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              fontSize: '0.72rem',
+              padding: 0
+            }}
+            title="View public landing page"
+          >
+             &rarr;
+          </button>
+        </div>
       </div>
     </aside>
   );

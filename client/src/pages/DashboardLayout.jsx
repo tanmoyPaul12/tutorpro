@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Bell, Search, UserCheck, Sparkles, ArrowLeft, Menu, X } from 'lucide-react';
+import { Sun, Moon, Bell, Search, UserCheck, Sparkles, ArrowLeft, Menu, X, LogOut } from 'lucide-react';
 
 import OverviewView from './dashboard/OverviewView';
 import StudentsView from './dashboard/StudentsView';
@@ -15,7 +15,7 @@ import SubscriptionView from './dashboard/SubscriptionView';
 import WhatsAppAlertModal from '../components/WhatsAppAlertModal';
 
 export default function DashboardLayout({ onBackHome }) {
-  const { user, switchDemoPersona } = useAuth();
+  const { user, switchDemoPersona, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
   const isParent = user?.role === 'PARENT';
@@ -243,6 +243,30 @@ export default function DashboardLayout({ onBackHome }) {
               aria-label="Back to Landing Page"
             >
               <ArrowLeft size={16} color="var(--text-secondary)" />
+            </button>
+
+            {/* Log Out Icon Button */}
+            <button
+              onClick={() => {
+                logout();
+                onBackHome?.();
+              }}
+              className="btn btn-secondary btn-sm"
+              style={{
+                borderRadius: '50%',
+                width: '36px',
+                height: '36px',
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--danger)'
+              }}
+              title="Log Out"
+              id="dashboard-logout-btn"
+              aria-label="Log Out"
+            >
+              <LogOut size={16} />
             </button>
           </div>
         </header>
