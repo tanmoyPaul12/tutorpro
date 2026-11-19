@@ -8,7 +8,7 @@
       "role": "TUTOR",
       "phone": "9876500001",
       "academyName": "Tanmoy's Mathematics Academy",
-      "subject": "Physics",
+      "subject": "Mathematics",
       "studentCountTarget": 30,
       "subscriptionPlan": "STARTER",
       "onboardingCompleted": true,
@@ -106,6 +106,22 @@
       "monthlyFee": 1600,
       "capacity": 25,
       "createdAt": "2026-10-08T06:34:14.001Z"
+    },
+    {
+      "_id": "batch_1795110732783",
+      "tutorId": "tutor_tanmoy_001",
+      "name": "Class 10 Mathematics",
+      "subject": "Mathematics",
+      "classGrade": "Class 10",
+      "scheduleDays": [
+        "Monday",
+        "Wednesday",
+        "Friday"
+      ],
+      "timeSlot": "04:00 PM - 05:00 PM",
+      "monthlyFee": 1200,
+      "capacity": 25,
+      "createdAt": "2026-11-19T17:52:12.783Z"
     }
   ],
   "students": [
@@ -261,6 +277,20 @@
       "parentEmail": "",
       "monthlyFee": 2999,
       "joiningDate": "2026-10-08",
+      "status": "ACTIVE"
+    },
+    {
+      "_id": "std_1795109870752",
+      "tutorId": "tutor_tanmoy_001",
+      "batchId": "batch_10_maths",
+      "name": "Sneha Mukherjee",
+      "rollNo": "TP-0752",
+      "classGrade": "Class 10",
+      "parentName": "Rajiv Mukherjee",
+      "parentPhone": "9876599881",
+      "parentEmail": "",
+      "monthlyFee": 1200,
+      "joiningDate": "2026-11-19",
       "status": "ACTIVE"
     }
   ],
@@ -457,6 +487,19 @@
       "receiptNumber": "TP-794747",
       "reminderCount": 0,
       "paidDate": "2026-10-08"
+    },
+    {
+      "_id": "fee_1795109870752",
+      "tutorId": "tutor_tanmoy_001",
+      "studentId": "std_1795109870752",
+      "batchId": "batch_10_maths",
+      "month": "October 2026",
+      "amount": 1200,
+      "status": "PENDING",
+      "paymentMode": "PENDING",
+      "receiptNumber": "",
+      "reminderCount": 0,
+      "createdAt": "2026-11-19T17:37:50.752Z"
     }
   ],
   "tests": [
@@ -531,6 +574,275 @@
         }
       ],
       "createdAt": "2026-10-08T06:17:04.456Z"
+    }
+  ],
+  "branches": [
+    {
+      "_id": "branch_kolkata_south",
+      "tutorId": "tutor_tanmoy_001",
+      "name": "South Kolkata Campus (Main)",
+      "code": "SK-01",
+      "city": "Kolkata",
+      "address": "14B Southern Avenue, Kolkata 700029",
+      "phone": "+91 98765 00001",
+      "studentCapacity": 500,
+      "createdAt": "2026-11-19T17:32:25.786Z"
+    },
+    {
+      "_id": "branch_salt_lake",
+      "tutorId": "tutor_tanmoy_001",
+      "name": "Salt Lake Science Hub",
+      "code": "SL-02",
+      "city": "Kolkata",
+      "address": "Sector V, Salt Lake City, Kolkata 700091",
+      "phone": "+91 98765 00002",
+      "studentCapacity": 350,
+      "createdAt": "2026-11-19T17:32:25.787Z"
+    },
+    {
+      "_id": "branch_online_hub",
+      "tutorId": "tutor_tanmoy_001",
+      "name": "Digital & Live Interactive Wing",
+      "code": "DIGI-03",
+      "city": "Online",
+      "address": "Virtual Classroom 1 & 2 (Zoom / Google Meet)",
+      "phone": "+91 98765 00003",
+      "studentCapacity": 1000,
+      "createdAt": "2026-11-19T17:32:25.787Z"
+    }
+  ],
+  "faculty": [
+    {
+      "_id": "fac_subhas_01",
+      "instituteId": "tutor_tanmoy_001",
+      "name": "Prof. Subhash Bose",
+      "role": "Senior Faculty - Mathematics",
+      "email": "subhash.bose@tutorpro.com",
+      "phone": "9830112233",
+      "branchId": "branch_kolkata_south",
+      "assignedBatches": [
+        "batch_10_maths",
+        "batch_11_maths"
+      ],
+      "rating": 4.9,
+      "status": "ACTIVE",
+      "joinedDate": "2025-06-15"
+    },
+    {
+      "_id": "fac_priya_02",
+      "instituteId": "tutor_tanmoy_001",
+      "name": "Dr. Priya Sengupta",
+      "role": "Faculty - Physics & Mechanics",
+      "email": "priya.sengupta@tutorpro.com",
+      "phone": "9830445566",
+      "branchId": "branch_salt_lake",
+      "assignedBatches": [
+        "batch_12_physics"
+      ],
+      "rating": 4.8,
+      "status": "ACTIVE",
+      "joinedDate": "2025-08-01"
+    },
+    {
+      "_id": "fac_anirban_03",
+      "instituteId": "tutor_tanmoy_001",
+      "name": "Anirban Mukherjee",
+      "role": "Associate Faculty - Junior Science",
+      "email": "anirban.m@tutorpro.com",
+      "phone": "9830778899",
+      "branchId": "branch_kolkata_south",
+      "assignedBatches": [
+        "batch_9_science"
+      ],
+      "rating": 4.7,
+      "status": "ACTIVE",
+      "joinedDate": "2026-01-10"
+    }
+  ],
+  "branding": {
+    "instituteId": "tutor_tanmoy_001",
+    "logoUrl": "",
+    "tagline": "Empowering Next-Gen Scholars through Conceptual Mastery & Board Excellence",
+    "primaryColor": "#4f46e5",
+    "customDomain": "apexmaths.tutorpro.in",
+    "announcement": "Registrations open for Class 10 Board Revision & Test Series!"
+  },
+  "marketplaceTutors": [
+    {
+      "_id": "mkt_tutor_01",
+      "tutorId": "tutor_tanmoy_001",
+      "name": "Tanmoy Paul",
+      "title": "Senior Mathematics & Physics Specialist",
+      "avatarEmoji": "👨‍🏫",
+      "subject": "Mathematics & Physics",
+      "grades": [
+        "Class 9",
+        "Class 10",
+        "Class 11",
+        "Class 12",
+        "JEE Foundation"
+      ],
+      "city": "Kolkata",
+      "mode": "Hybrid (Classroom & Online)",
+      "experienceYears": 6,
+      "studentsTaught": "250+",
+      "hourlyRate": 600,
+      "demoFee": 200,
+      "rating": 4.9,
+      "reviewCount": 58,
+      "bio": "Ex-FIITJEE faculty passionate about making calculus, coordinate geometry, and board mathematics clear and intuitive. Over 150 students scored 90%+ in CBSE/ICSE.",
+      "highlights": [
+        "CBSE & ICSE Board Topper Mentor",
+        "Personalized Doubt Support",
+        "Weekly Chapter Mock Tests"
+      ],
+      "verified": true,
+      "isPublic": true
+    },
+    {
+      "_id": "mkt_tutor_02",
+      "tutorId": "tutor_rahul_sharma",
+      "name": "Rahul Sharma",
+      "title": "IIT-JEE Advanced Physics Expert",
+      "avatarEmoji": "👨‍🔬",
+      "subject": "Physics",
+      "grades": [
+        "Class 11",
+        "Class 12",
+        "JEE Advanced",
+        "CUET"
+      ],
+      "city": "Delhi NCR",
+      "mode": "Online Live Interactive",
+      "experienceYears": 5,
+      "studentsTaught": "180+",
+      "hourlyRate": 750,
+      "demoFee": 250,
+      "rating": 4.8,
+      "reviewCount": 42,
+      "bio": "B.Tech IIT Delhi. Specializes in mechanics, electromagnetism, and modern physics through visual animations and deep problem-solving frameworks.",
+      "highlights": [
+        "IIT Delhi Alum",
+        "Top 500 AIR Coach",
+        "Recorded Lecture Archives"
+      ],
+      "verified": true,
+      "isPublic": true
+    },
+    {
+      "_id": "mkt_tutor_03",
+      "tutorId": "tutor_ananya_roy",
+      "name": "Dr. Ananya Roy",
+      "title": "NEET & Board Chemistry Mentor",
+      "avatarEmoji": "👩‍🔬",
+      "subject": "Chemistry",
+      "grades": [
+        "Class 10",
+        "Class 11",
+        "Class 12",
+        "NEET"
+      ],
+      "city": "Bengaluru",
+      "mode": "Hybrid (Classroom & Online)",
+      "experienceYears": 8,
+      "studentsTaught": "320+",
+      "hourlyRate": 700,
+      "demoFee": 200,
+      "rating": 4.95,
+      "reviewCount": 76,
+      "bio": "Ph.D. in Organic Chemistry. Simplifying complex reaction mechanisms, named reactions, and stoichiometric calculations for medical and board aspirants.",
+      "highlights": [
+        "AIIMS & NEET High-Scorer Guide",
+        "Formula Flashcards Provided",
+        "24x7 Chat Doubt Clearance"
+      ],
+      "verified": true,
+      "isPublic": true
+    },
+    {
+      "_id": "mkt_tutor_04",
+      "tutorId": "tutor_vikram_singh",
+      "name": "Vikram Singh",
+      "title": "Junior Science & Biology Specialist",
+      "avatarEmoji": "🔬",
+      "subject": "Biology & General Science",
+      "grades": [
+        "Class 8",
+        "Class 9",
+        "Class 10"
+      ],
+      "city": "Mumbai",
+      "mode": "Online",
+      "experienceYears": 4,
+      "studentsTaught": "120+",
+      "hourlyRate": 500,
+      "demoFee": 150,
+      "rating": 4.7,
+      "reviewCount": 31,
+      "bio": "Focuses on diagrammatic representation, NCERT line-by-line decoding, and making biology engaging and easy to remember for young learners.",
+      "highlights": [
+        "NCERT Line-by-Line Mastery",
+        "Mnemonics & Mind Maps",
+        "Frequent Pop Quizzes"
+      ],
+      "verified": true,
+      "isPublic": true
+    }
+  ],
+  "demoBookings": [
+    {
+      "_id": "demo_1795109758633",
+      "tutorId": "tutor_tanmoy_001",
+      "tutorName": "Tanmoy Paul",
+      "parentName": "Anita Ghosh",
+      "parentPhone": "9830555444",
+      "studentName": "Subir Ghosh",
+      "grade": "Class 10",
+      "subject": "Mathematics",
+      "preferredDate": "2026-11-19",
+      "timeSlot": "05:00 PM - 06:00 PM",
+      "status": "PENDING",
+      "demoFee": 200,
+      "platformFee": 10,
+      "tutorPayout": 190,
+      "notes": "Demo class booking via TutorPro Marketplace",
+      "createdAt": "2026-11-19T17:35:58.633Z"
+    },
+    {
+      "_id": "demo_001",
+      "tutorId": "tutor_tanmoy_001",
+      "parentName": "Rajiv Mukherjee",
+      "parentPhone": "9876599881",
+      "studentName": "Sneha Mukherjee",
+      "grade": "Class 10",
+      "subject": "Mathematics",
+      "preferredDate": "2026-10-25",
+      "timeSlot": "05:00 PM - 06:00 PM",
+      "status": "CONVERTED",
+      "demoFee": 200,
+      "platformFee": 10,
+      "tutorPayout": 190,
+      "notes": "Looking for Class 10 Board exam trigonometry doubt clearance.",
+      "createdAt": "2026-10-18T10:30:00.000Z",
+      "convertedStudentId": "std_1795109870752",
+      "updatedAt": "2026-11-19T17:37:50.752Z"
+    },
+    {
+      "_id": "demo_002",
+      "tutorId": "tutor_tanmoy_001",
+      "parentName": "Meenakshi Roy",
+      "parentPhone": "9876522334",
+      "studentName": "Dev Roy",
+      "grade": "Class 11",
+      "subject": "Mathematics",
+      "preferredDate": "2026-10-22",
+      "timeSlot": "07:00 PM - 08:00 PM",
+      "status": "CONFIRMED",
+      "demoFee": 200,
+      "platformFee": 10,
+      "tutorPayout": 190,
+      "notes": "Interested in foundation calculus batch.",
+      "createdAt": "2026-10-17T14:15:00.000Z"
     }
   ]
 }

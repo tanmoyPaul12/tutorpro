@@ -12,6 +12,9 @@ import feeRoutes from './routes/fees.js';
 import testRoutes from './routes/tests.js';
 import analyticsRoutes from './routes/analytics.js';
 import parentRoutes from './routes/parent.js';
+import marketplaceRoutes from './routes/marketplace.js';
+import instituteRoutes from './routes/institute.js';
+import aiRoutes from './routes/ai.js';
 
 dotenv.config();
 
@@ -43,6 +46,9 @@ app.use('/api/fees', feeRoutes);
 app.use('/api/tests', testRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/parent', parentRoutes);
+app.use('/api/marketplace', marketplaceRoutes);
+app.use('/api/institute', instituteRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

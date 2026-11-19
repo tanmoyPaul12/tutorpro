@@ -4,7 +4,7 @@ import {
   ArrowRight, Zap, Sparkles, Clock, Award, Star, Check, X
 } from 'lucide-react';
 
-export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo }) {
+export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo, onOpenMarketplace }) {
   return (
     <div style={{ width: '100%', overflowX: 'hidden' }}>
       {/* ====================================================================
@@ -542,7 +542,7 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
               </div>
               <div>
                 <h3 style={{ fontSize: '1.12rem', fontWeight: 800 }}>Tests & Results</h3>
-                <span style={{ fontSize: '0.72rem', color: '#534AB7', fontWeight: 700 }}>Pro Tier (Preview in Demo)</span>
+                <span style={{ fontSize: '0.72rem', color: '#534AB7', fontWeight: 700 }}>Pro & Institute Tiers Active</span>
               </div>
             </div>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.6 }}>
@@ -587,10 +587,10 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
             B2B SAAS PLANS
           </span>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '12px' }}>
-            Affordable subscriptions for tutors.
+            Transparent subscriptions for tutors & institutes.
           </h2>
           <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
-            Free and Starter tiers are active now. Pro and Institute represent future commercial tiers.
+            All tiers are active and production-ready. Scale smoothly from solo tutoring to multi-branch academy operations.
           </p>
         </div>
 
@@ -632,31 +632,14 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
             </button>
           </div>
 
-          {/* Starter Tier (Most Popular - Active) */}
+          {/* Starter Tier */}
           <div className="card" style={{
             padding: '28px 22px',
             display: 'flex',
             flexDirection: 'column',
-            border: '2px solid var(--primary)',
-            position: 'relative',
-            boxShadow: 'var(--shadow-glow)'
+            border: '1px solid var(--border-subtle)',
+            position: 'relative'
           }}>
-            <div style={{
-              position: 'absolute',
-              top: '-12px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              background: 'var(--primary)',
-              color: '#ffffff',
-              padding: '2px 14px',
-              borderRadius: '20px',
-              fontSize: '0.68rem',
-              fontWeight: 800,
-              letterSpacing: '0.04em'
-            }}>
-              CURRENT ACTIVE TIER
-            </div>
-
             <div style={{ marginBottom: '16px' }}>
               <span className="badge badge-primary" style={{ marginBottom: '8px' }}>Starter Plan</span>
               <div style={{ fontSize: '2.2rem', fontWeight: 800 }}>
@@ -685,48 +668,50 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
               </li>
             </ul>
 
-            <button onClick={onOpenOnboarding} className="btn btn-primary" style={{ width: '100%' }}>
+            <button onClick={onOpenOnboarding} className="btn btn-secondary" style={{ width: '100%' }}>
               Start 14-Day Free Trial
             </button>
           </div>
 
-          {/* Pro Tier (Roadmap / Future Scope) */}
+          {/* Pro Tier (Active Commercial Tier) */}
           <div className="card" style={{
             padding: '28px 22px',
             display: 'flex',
             flexDirection: 'column',
-            border: '1px dashed var(--border-strong)',
-            position: 'relative'
+            border: '2px solid #534AB7',
+            position: 'relative',
+            boxShadow: 'var(--shadow-glow)'
           }}>
             <div style={{
               position: 'absolute',
               top: '-12px',
               left: '50%',
               transform: 'translateX(-50%)',
-              background: '#EEEDFE',
-              color: '#534AB7',
-              border: '1px solid rgba(83, 74, 183, 0.3)',
-              padding: '2px 10px',
+              background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+              color: '#ffffff',
+              padding: '2px 14px',
               borderRadius: '20px',
-              fontSize: '0.65rem',
-              fontWeight: 800
+              fontSize: '0.68rem',
+              fontWeight: 800,
+              letterSpacing: '0.04em',
+              whiteSpace: 'nowrap'
             }}>
-              FUTURE SCOPE (ROADMAP)
+              MOST POPULAR FOR ACADEMIES
             </div>
 
             <div style={{ marginBottom: '16px' }}>
               <span className="badge" style={{ background: '#EEEDFE', color: '#534AB7', marginBottom: '8px' }}>
                 Pro Plan
               </span>
-              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-secondary)' }}>
+              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 ₹599<span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500 }}>/month</span>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                For scaling institutes with multiple teachers.
+                For growing tutors & specialized coaches.
               </p>
             </div>
 
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '26px', flex: 1, fontSize: '0.83rem', color: 'var(--text-secondary)' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '26px', flex: 1, fontSize: '0.83rem' }}>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <CheckCircle2 size={15} color="#534AB7" /> <strong>Up to 300 students</strong>
               </li>
@@ -734,52 +719,59 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
                 <CheckCircle2 size={15} color="#534AB7" /> Everything in Starter
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="#534AB7" /> Unit tests & auto rankings
+                <CheckCircle2 size={15} color="#534AB7" /> Unit tests & auto class ranks
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="#534AB7" /> Dedicated Parent Portal
+                <CheckCircle2 size={15} color="#534AB7" /> Dedicated Parent Transparency Portal
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="#534AB7" /> Multiple faculty accounts
+                <CheckCircle2 size={15} color="#534AB7" /> <strong>✨ AI Question Paper Generator</strong>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle2 size={15} color="#534AB7" /> <strong>✨ AI Student Diagnostic Engine</strong>
               </li>
             </ul>
 
             <button
-              onClick={onEnterDemo}
-              className="btn btn-secondary"
-              style={{ width: '100%', fontSize: '0.82rem', borderColor: '#534AB7', color: '#534AB7', background: '#EEEDFE' }}
+              onClick={onOpenOnboarding}
+              className="btn btn-primary"
+              style={{ width: '100%', fontSize: '0.85rem', background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
             >
-              ⚡ Preview in Demo Mode
+              Start 14-Day Free Trial
             </button>
           </div>
 
-          {/* Institute Tier (Roadmap / Future Scope) */}
+          {/* Institute Tier (Active Commercial Tier) */}
           <div className="card" style={{
             padding: '28px 22px',
             display: 'flex',
             flexDirection: 'column',
-            border: '1px dashed var(--border-strong)',
-            position: 'relative'
+            border: '2px solid #0F6E56',
+            position: 'relative',
+            boxShadow: 'var(--shadow-glow)'
           }}>
             <div style={{
               position: 'absolute',
               top: '-12px',
               left: '50%',
               transform: 'translateX(-50%)',
-              background: 'var(--bg-surface-hover)',
-              color: 'var(--text-muted)',
-              border: '1px solid var(--border-subtle)',
-              padding: '2px 10px',
+              background: 'linear-gradient(135deg, #0f766e, #0e7490)',
+              color: '#ffffff',
+              padding: '2px 14px',
               borderRadius: '20px',
-              fontSize: '0.65rem',
-              fontWeight: 800
+              fontSize: '0.68rem',
+              fontWeight: 800,
+              letterSpacing: '0.04em',
+              whiteSpace: 'nowrap'
             }}>
-              FUTURE SCOPE (ROADMAP)
+              MULTI-CAMPUS ENTERPRISE
             </div>
 
             <div style={{ marginBottom: '16px' }}>
-              <span className="badge badge-neutral" style={{ marginBottom: '8px' }}>Institute Plan</span>
-              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-muted)' }}>
+              <span className="badge" style={{ background: '#E1F5EE', color: '#0F6E56', marginBottom: '8px' }}>
+                Institute Plan
+              </span>
+              <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 ₹1,499<span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500 }}>/month</span>
               </div>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
@@ -787,27 +779,33 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
               </p>
             </div>
 
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '26px', flex: 1, fontSize: '0.83rem', color: 'var(--text-muted)' }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '26px', flex: 1, fontSize: '0.83rem' }}>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="var(--text-muted)" /> <strong>Up to 1,000 students</strong>
+                <CheckCircle2 size={15} color="#0F6E56" /> <strong>Up to 1,000 students</strong>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="var(--text-muted)" /> Multi-branch branch management
+                <CheckCircle2 size={15} color="#0F6E56" /> Everything in Pro
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="var(--text-muted)" /> Custom branded academy app
+                <CheckCircle2 size={15} color="#0F6E56" /> <strong>Multi-branch campus management</strong>
               </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CheckCircle2 size={15} color="var(--text-muted)" /> Dedicated priority support
+                <CheckCircle2 size={15} color="#0F6E56" /> <strong>Faculty & staff directory with ratings</strong>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle2 size={15} color="#0F6E56" /> <strong>Custom academy branding & white-label URL</strong>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <CheckCircle2 size={15} color="#0F6E56" /> Dedicated priority phone support
               </li>
             </ul>
 
             <button
-              disabled
-              className="btn btn-secondary"
-              style={{ width: '100%', fontSize: '0.82rem', opacity: 0.6, cursor: 'not-allowed' }}
+              onClick={onOpenOnboarding}
+              className="btn btn-primary"
+              style={{ width: '100%', fontSize: '0.85rem', background: 'linear-gradient(135deg, #0f766e, #0e7490)' }}
             >
-              Roadmap Tier
+              Start Institute Trial
             </button>
           </div>
         </div>
@@ -880,17 +878,28 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
               {/* Phased Roadmap */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.85rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#0F6E56', fontWeight: 800 }}>✓ Phase 1 (Today):</span>
+                  <span style={{ color: '#0F6E56', fontWeight: 800 }}>✓ Phase 1:</span>
                   <span>Tutor Operating System (Students, Batches, Attendance, Fees)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#534AB7', fontWeight: 800 }}>⏳ Phase 2:</span>
-                  <span>Tutor Marketplace & Public Demo Booking (5% commission)</span>
+                  <span style={{ color: '#0F6E56', fontWeight: 800 }}>✓ Phase 2:</span>
+                  <span>Live Tutor Marketplace & Public Demo Booking (5% commission)</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#854F0B', fontWeight: 800 }}>🚀 Phase 3:</span>
-                  <span>AI Question Paper Generator & Multi-City Expansion</span>
+                  <span style={{ color: '#0F6E56', fontWeight: 800 }}>✓ Phase 3:</span>
+                  <span>AI Question Paper Generator & Student Diagnostic Engine</span>
                 </div>
+              </div>
+
+              <div style={{ marginTop: '20px' }}>
+                <button
+                  onClick={() => onOpenMarketplace && onOpenMarketplace()}
+                  className="btn btn-primary"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '0.88rem' }}
+                >
+                  <Sparkles size={16} />
+                  <span>Browse All Marketplace Tutors</span>
+                </button>
               </div>
             </div>
 
@@ -916,11 +925,11 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
                     justifyContent: 'center',
                     fontSize: '1.6rem'
                   }}>
-                    👨‍🏫
+                    👨‍🔬
                   </div>
                   <div>
                     <h4 style={{ fontSize: '1.15rem', fontWeight: 800 }}>Rahul Sharma</h4>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>Mathematics Specialist</p>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.82rem' }}>IIT-JEE Physics Mentor</p>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '2px', color: '#854F0B', fontSize: '0.82rem', fontWeight: 700 }}>
                         <Star size={13} fill="#854F0B" /> 4.8
@@ -946,11 +955,11 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
                   </div>
                   <div>
                     <div style={{ color: 'var(--text-muted)' }}>Students Taught</div>
-                    <div style={{ fontWeight: 700 }}>120+ Students</div>
+                    <div style={{ fontWeight: 700 }}>180+ Students</div>
                   </div>
                   <div>
                     <div style={{ color: 'var(--text-muted)' }}>Grades</div>
-                    <div style={{ fontWeight: 700 }}>Class 8–12</div>
+                    <div style={{ fontWeight: 700 }}>Class 11–12</div>
                   </div>
                   <div>
                     <div style={{ color: 'var(--text-muted)' }}>Focus</div>
@@ -960,9 +969,9 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                   <div>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Tuition Rate</span>
+                    <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Demo Class Fee</span>
                     <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)' }}>
-                      ₹500 <span style={{ fontSize: '0.78rem', fontWeight: 500 }}>/ class</span>
+                      ₹250 <span style={{ fontSize: '0.78rem', fontWeight: 500 }}>(5% platform fee: ₹13)</span>
                     </div>
                   </div>
                   <span className="badge" style={{ background: '#E1F5EE', color: '#0F6E56', fontWeight: 700, fontSize: '0.72rem' }}>
@@ -971,11 +980,11 @@ export default function LandingPage({ onOpenAuth, onOpenOnboarding, onEnterDemo 
                 </div>
 
                 <button
-                  onClick={() => alert('Future Scope Demo: Booking demo class with Rahul Sharma! TutorPro earns ₹25 (5% commission).')}
+                  onClick={() => onOpenMarketplace && onOpenMarketplace('tutor_rahul_sharma')}
                   className="btn btn-primary"
                   style={{ width: '100%', padding: '11px', fontSize: '0.88rem' }}
                 >
-                  Book Demo Class
+                  Book Demo Class (₹250)
                 </button>
               </div>
             </div>

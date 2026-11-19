@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { 
   Users, Plus, Search, Filter, Phone, Mail, CheckCircle2, 
-  AlertCircle, Edit2, Trash2, X, MessageSquare 
+  AlertCircle, Edit2, Trash2, X, MessageSquare, Sparkles 
 } from 'lucide-react';
+import AiDiagnosticModal from '../../components/AiDiagnosticModal';
 
 export default function StudentsView({ onOpenWhatsAppModal }) {
   const { token, user } = useAuth();
@@ -13,6 +14,7 @@ export default function StudentsView({ onOpenWhatsAppModal }) {
   const [search, setSearch] = useState('');
   const [selectedBatch, setSelectedBatch] = useState('ALL');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [diagnosticStudentId, setDiagnosticStudentId] = useState(null);
 
   const [newStudent, setNewStudent] = useState({
     name: '',
@@ -257,6 +259,16 @@ export default function StudentsView({ onOpenWhatsAppModal }) {
                   <td style={{ textAlign: 'right' }}>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '6px' }}>
                       <button
+                        onClick={() => setDiagnosticStudentId(std._id)}
+                        className="btn btn-secondary btn-sm"
+                        style={{ padding: '6px 9px', borderRadius: '8px', fontSize: '0.72rem', borderColor: '#8b5cf6', color: '#8b5cf6', background: 'rgba(139, 92, 246, 0.08)' }}
+                        title="Generate AI Academic Diagnostic Report"
+                      >
+                        <Sparkles size={12} />
+                        <span>AI Diagnostic</span>
+                      </button>
+
+                      <button
                         onClick={() => onOpenWhatsAppModal({
                           studentName: std.name,
                           parentName: std.parentName,
@@ -391,6 +403,13 @@ export default function StudentsView({ onOpenWhatsAppModal }) {
           </div>
         </div>
       )}
+      {/* AI Academic Diagnostic Modal */}
+      <AiDiagnosticModal
+        isOpen={!!diagnosticStudentId}
+        onClose={() => setDiagnosticStudentId(null)}
+        studentId={diagnosticStudentId}
+        onOpenWhatsAppModal={onOpenWhatsAppModal}
+      />
     </div>
   );
 }

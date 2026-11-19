@@ -2,7 +2,8 @@ import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
   LayoutDashboard, Users, Calendar, CheckCircle2, IndianRupee, 
-  Award, UserCheck, CreditCard, LogOut, X
+  Award, UserCheck, CreditCard, LogOut, X, Building2, GraduationCap, 
+  Palette, Globe, Sparkles 
 } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, onClose }) {
@@ -11,6 +12,7 @@ export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, o
   const isParent = user?.role === 'PARENT';
   const plan = user?.subscriptionPlan || 'STARTER';
   const isProOrAbove = plan === 'PRO' || plan === 'INSTITUTE';
+  const isInstitute = plan === 'INSTITUTE';
 
   const tutorMenuItems = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
@@ -18,9 +20,16 @@ export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, o
     { id: 'batches', label: 'Batches & Timetable', icon: Calendar },
     { id: 'attendance', label: 'Attendance', icon: CheckCircle2 },
     { id: 'fees', label: 'Fees & Payments', icon: IndianRupee },
+    { id: 'marketplace-leads', label: 'Marketplace Leads', icon: Globe },
     ...(isProOrAbove ? [
       { id: 'tests', label: 'Tests & Results', icon: Award, proBadge: true },
+      { id: 'ai-studio', label: '✨ AI Test Studio', icon: Sparkles, proBadge: true },
       { id: 'parent-portal', label: 'Parent Portal Simulator', icon: UserCheck, highlight: true, proBadge: true }
+    ] : []),
+    ...(isInstitute ? [
+      { id: 'branches', label: 'Branch Campuses', icon: Building2, instituteBadge: true },
+      { id: 'faculty', label: 'Faculty Directory', icon: GraduationCap, instituteBadge: true },
+      { id: 'branding', label: 'Academy Branding', icon: Palette, instituteBadge: true }
     ] : []),
     { id: 'subscription', label: 'Subscription & Plans', icon: CreditCard }
   ];
@@ -174,6 +183,9 @@ export default function Sidebar({ activeTab, setActiveTab, onBackHome, isOpen, o
               <span style={{ flex: 1 }}>{item.label}</span>
               {item.proBadge && !isActive && (
                 <span className="badge" style={{ fontSize: '0.62rem', background: '#EEEDFE', color: '#534AB7', fontWeight: 800, padding: '2px 6px' }}>PRO</span>
+              )}
+              {item.instituteBadge && !isActive && (
+                <span className="badge" style={{ fontSize: '0.62rem', background: '#E1F5EE', color: '#0F6E56', fontWeight: 800, padding: '2px 6px' }}>ACADEMY</span>
               )}
             </button>
           );

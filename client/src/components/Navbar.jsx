@@ -3,7 +3,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { Sun, Moon, Sparkles, LayoutDashboard, UserCheck, ArrowRight, Menu, X, Zap, LogOut } from 'lucide-react';
 
-export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection, currentView, setView }) {
+export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection, onOpenMarketplace, currentView, setView }) {
   const { theme, toggleTheme } = useTheme();
   const { user, isAuthenticated, switchDemoPersona, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -96,17 +96,22 @@ export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection
             </a>
             <a 
               href="#marketplace" 
-              onClick={(e) => { e.preventDefault(); onNavigateSection('marketplace'); }}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                if (onOpenMarketplace) onOpenMarketplace(); 
+                else onNavigateSection('marketplace'); 
+              }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                color: 'var(--accent)',
+                color: '#0F6E56',
+                fontWeight: 700,
                 transition: 'color var(--transition-fast)'
               }}
             >
-              <Sparkles size={14} />
-              Future Scope
+              <Sparkles size={14} color="#0F6E56" />
+              Tutor Marketplace (Live)
             </a>
           </nav>
         )}
@@ -234,11 +239,16 @@ export default function Navbar({ onOpenAuth, onOpenOnboarding, onNavigateSection
             </a>
             <a 
               href="#marketplace" 
-              onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); onNavigateSection('marketplace'); }}
-              style={{ padding: '8px 0', borderBottom: '1px solid var(--border-subtle)', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '6px' }}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                setMobileMenuOpen(false); 
+                if (onOpenMarketplace) onOpenMarketplace();
+                else onNavigateSection('marketplace'); 
+              }}
+              style={{ padding: '8px 0', borderBottom: '1px solid var(--border-subtle)', color: '#0F6E56', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
             >
-              <Sparkles size={16} />
-              Future Scope (Marketplace)
+              <Sparkles size={16} color="#0F6E56" />
+              Tutor Marketplace (Live)
             </a>
           </div>
 

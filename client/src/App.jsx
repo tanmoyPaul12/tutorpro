@@ -6,6 +6,7 @@ import LandingPage from './pages/LandingPage';
 import DashboardLayout from './pages/DashboardLayout';
 import AuthModal from './components/AuthModal';
 import OnboardingModal from './components/OnboardingModal';
+import MarketplaceModal from './components/MarketplaceModal';
 
 function MainApp() {
   const [view, setView] = useState(() => {
@@ -13,6 +14,7 @@ function MainApp() {
   });
   const [authModal, setAuthModal] = useState({ open: false, mode: 'login' });
   const [onboardingOpen, setOnboardingOpen] = useState(false);
+  const [marketplaceModal, setMarketplaceModal] = useState({ open: false, tutorId: null });
   const { switchDemoPersona } = useAuth();
 
   React.useEffect(() => {
@@ -25,6 +27,10 @@ function MainApp() {
 
   const handleOpenOnboarding = () => {
     setOnboardingOpen(true);
+  };
+
+  const handleOpenMarketplace = (tutorId = null) => {
+    setMarketplaceModal({ open: true, tutorId });
   };
 
   const handleEnterDemo = async () => {
@@ -53,6 +59,7 @@ function MainApp() {
           onOpenAuth={handleOpenAuth}
           onOpenOnboarding={handleOpenOnboarding}
           onNavigateSection={scrollToSection}
+          onOpenMarketplace={handleOpenMarketplace}
           currentView={view}
           setView={setView}
         />
@@ -64,6 +71,7 @@ function MainApp() {
           onOpenAuth={handleOpenAuth}
           onOpenOnboarding={handleOpenOnboarding}
           onEnterDemo={handleEnterDemo}
+          onOpenMarketplace={handleOpenMarketplace}
         />
       ) : (
         <DashboardLayout
@@ -84,6 +92,13 @@ function MainApp() {
         isOpen={onboardingOpen}
         onClose={() => setOnboardingOpen(false)}
         onComplete={() => setView('dashboard')}
+      />
+
+      {/* Public Tutor Marketplace Modal */}
+      <MarketplaceModal
+        isOpen={marketplaceModal.open}
+        onClose={() => setMarketplaceModal({ open: false, tutorId: null })}
+        preselectedTutorId={marketplaceModal.tutorId}
       />
     </div>
   );

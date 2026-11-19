@@ -12,6 +12,11 @@ import FeesView from './dashboard/FeesView';
 import TestsView from './dashboard/TestsView';
 import ParentPortalView from './dashboard/ParentPortalView';
 import SubscriptionView from './dashboard/SubscriptionView';
+import MarketplaceLeadsView from './dashboard/MarketplaceLeadsView';
+import AiStudioView from './dashboard/AiStudioView';
+import BranchesView from './dashboard/BranchesView';
+import FacultyView from './dashboard/FacultyView';
+import BrandingView from './dashboard/BrandingView';
 import WhatsAppAlertModal from '../components/WhatsAppAlertModal';
 
 export default function DashboardLayout({ onBackHome }) {
@@ -21,12 +26,16 @@ export default function DashboardLayout({ onBackHome }) {
   const isParent = user?.role === 'PARENT';
   const plan = user?.subscriptionPlan || 'STARTER';
   const isPro = plan === 'PRO' || plan === 'INSTITUTE';
+  const isInstitute = plan === 'INSTITUTE';
 
   const [activeTab, setActiveTab] = useState(() => {
     if (isParent) return 'parent-portal';
     const saved = localStorage.getItem('tutorpro_active_tab');
     if (saved) {
-      if ((saved === 'tests' || saved === 'parent-portal') && !isPro) {
+      if ((saved === 'tests' || saved === 'parent-portal' || saved === 'ai-studio') && !isPro) {
+        return 'overview';
+      }
+      if ((saved === 'branches' || saved === 'faculty' || saved === 'branding') && !isInstitute) {
         return 'overview';
       }
       return saved;
@@ -38,12 +47,17 @@ export default function DashboardLayout({ onBackHome }) {
     localStorage.setItem('tutorpro_active_tab', activeTab);
   }, [activeTab]);
 
-  // If plan is downgraded/switched and on tests or parent-portal, return to overview
+  // If plan is downgraded/switched and on restricted tabs, return to overview
   React.useEffect(() => {
-    if (!isParent && (activeTab === 'tests' || activeTab === 'parent-portal') && !isPro) {
-      setActiveTab('overview');
+    if (!isParent) {
+      if ((activeTab === 'tests' || activeTab === 'parent-portal' || activeTab === 'ai-studio') && !isPro) {
+        setActiveTab('overview');
+      }
+      if ((activeTab === 'branches' || activeTab === 'faculty' || activeTab === 'branding') && !isInstitute) {
+        setActiveTab('overview');
+      }
     }
-  }, [isPro, isParent, activeTab]);
+  }, [isPro, isInstitute, isParent, activeTab]);
 
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -114,6 +128,11 @@ export default function DashboardLayout({ onBackHome }) {
               <span style={{ fontSize: '0.875rem', fontWeight: 700, textTransform: 'capitalize', color: 'var(--text-primary)' }}>
                 {activeTab.replace('-', ' ')}
               </span>
+              {isInstitute && (
+                <span className="badge" style={{ background: '#E1F5EE', color: '#0F6E56', fontSize: '0.7rem', fontWeight: 800, marginLeft: '6px' }}>
+                  🏛️ Multi-Campus Institute
+                </span>
+              )}
             </div>
           </div>
 
@@ -278,8 +297,13 @@ export default function DashboardLayout({ onBackHome }) {
           {activeTab === 'batches' && <BatchesView />}
           {activeTab === 'attendance' && <AttendanceView onOpenWhatsAppModal={openWhatsAppModal} />}
           {activeTab === 'fees' && <FeesView onOpenWhatsAppModal={openWhatsAppModal} />}
+          {activeTab === 'marketplace-leads' && <MarketplaceLeadsView onOpenWhatsAppModal={openWhatsAppModal} />}
           {activeTab === 'tests' && <TestsView />}
+          {activeTab === 'ai-studio' && <AiStudioView onNavigateTab={setActiveTab} />}
           {activeTab === 'parent-portal' && <ParentPortalView />}
+          {activeTab === 'branches' && <BranchesView />}
+          {activeTab === 'faculty' && <FacultyView />}
+          {activeTab === 'branding' && <BrandingView />}
           {activeTab === 'subscription' && <SubscriptionView />}
         </main>
       </div>

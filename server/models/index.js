@@ -88,9 +88,76 @@ const testSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+const branchSchema = new mongoose.Schema({
+  tutorId: { type: String, required: true },
+  name: { type: String, required: true },
+  code: { type: String, default: '' },
+  city: { type: String, required: true },
+  address: { type: String, default: '' },
+  phone: { type: String, default: '' },
+  studentCapacity: { type: Number, default: 300 },
+  createdAt: { type: Date, default: Date.now }
+});
+
+const facultySchema = new mongoose.Schema({
+  instituteId: { type: String, required: true },
+  name: { type: String, required: true },
+  role: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, default: '' },
+  branchId: { type: String, default: '' },
+  assignedBatches: [{ type: String }],
+  rating: { type: Number, default: 4.8 },
+  status: { type: String, enum: ['ACTIVE', 'ON_LEAVE', 'INACTIVE'], default: 'ACTIVE' },
+  joinedDate: { type: Date, default: Date.now }
+});
+
+const marketplaceTutorSchema = new mongoose.Schema({
+  tutorId: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  title: { type: String, required: true },
+  avatarEmoji: { type: String, default: '👨‍🏫' },
+  subject: { type: String, required: true },
+  grades: [{ type: String }],
+  city: { type: String, required: true },
+  mode: { type: String, default: 'Hybrid' },
+  experienceYears: { type: Number, default: 3 },
+  studentsTaught: { type: String, default: '100+' },
+  hourlyRate: { type: Number, required: true },
+  demoFee: { type: Number, default: 200 },
+  rating: { type: Number, default: 5.0 },
+  reviewCount: { type: Number, default: 0 },
+  bio: { type: String, default: '' },
+  highlights: [{ type: String }],
+  verified: { type: Boolean, default: true },
+  isPublic: { type: Boolean, default: true }
+});
+
+const demoBookingSchema = new mongoose.Schema({
+  tutorId: { type: String, required: true },
+  tutorName: { type: String, default: '' },
+  parentName: { type: String, required: true },
+  parentPhone: { type: String, required: true },
+  studentName: { type: String, required: true },
+  grade: { type: String, default: 'Class 10' },
+  subject: { type: String, default: 'Mathematics' },
+  preferredDate: { type: String, required: true },
+  timeSlot: { type: String, required: true },
+  status: { type: String, enum: ['PENDING', 'CONFIRMED', 'COMPLETED', 'CANCELLED', 'CONVERTED'], default: 'PENDING' },
+  demoFee: { type: Number, default: 200 },
+  platformFee: { type: Number, default: 10 },
+  tutorPayout: { type: Number, default: 190 },
+  notes: { type: String, default: '' },
+  createdAt: { type: Date, default: Date.now }
+});
+
 export const User = mongoose.models.User || mongoose.model('User', userSchema);
 export const Batch = mongoose.models.Batch || mongoose.model('Batch', batchSchema);
 export const Student = mongoose.models.Student || mongoose.model('Student', studentSchema);
 export const Attendance = mongoose.models.Attendance || mongoose.model('Attendance', attendanceSchema);
 export const Fee = mongoose.models.Fee || mongoose.model('Fee', feeSchema);
 export const Test = mongoose.models.Test || mongoose.model('Test', testSchema);
+export const Branch = mongoose.models.Branch || mongoose.model('Branch', branchSchema);
+export const Faculty = mongoose.models.Faculty || mongoose.model('Faculty', facultySchema);
+export const MarketplaceTutor = mongoose.models.MarketplaceTutor || mongoose.model('MarketplaceTutor', marketplaceTutorSchema);
+export const DemoBooking = mongoose.models.DemoBooking || mongoose.model('DemoBooking', demoBookingSchema);

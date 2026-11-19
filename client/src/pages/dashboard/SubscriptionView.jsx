@@ -38,14 +38,15 @@ export default function SubscriptionView() {
       price: '₹599',
       period: '/month',
       students: 'Up to 300 students',
-      status: 'FUTURE_SCOPE',
-      badge: 'FUTURE SCOPE (ROADMAP)',
+      status: 'AVAILABLE',
+      badge: 'PRO TIER',
       features: [
         'Everything in Starter',
         'Unit tests & auto class ranks',
-        'Parent Portal Simulator',
-        'Instant WhatsApp absent alerts',
-        'Multiple faculty accounts'
+        'Parent Transparency Portal',
+        '✨ AI Question Paper Generator',
+        '✨ AI Student Diagnostic Engine',
+        '1-Click WhatsApp absent alerts'
       ]
     },
     {
@@ -54,27 +55,30 @@ export default function SubscriptionView() {
       price: '₹1,499',
       period: '/month',
       students: 'Up to 1,000 students',
-      status: 'FUTURE_SCOPE',
-      badge: 'FUTURE SCOPE (ROADMAP)',
+      status: 'AVAILABLE',
+      badge: 'ENTERPRISE ACADEMY',
       features: [
         'Everything in Pro',
-        'Multi-branch management',
-        'Custom branded academy app',
-        'Priority phone support'
+        'Multi-Branch Campus Operations',
+        'Faculty & Staff Directory',
+        'Custom Academy Branding & Logo',
+        'Unlimited AI Test Generations'
       ]
     }
   ];
 
   const handleSelectPlan = async (planId) => {
     await updatePlan(planId);
-    if (planId === 'PRO') {
-      setSuccessMsg('🎉 Pro Tier activated for college demo! "Tests & Results" and "Parent Portal Simulator" are now unlocked in your sidebar menu.');
+    if (planId === 'INSTITUTE') {
+      setSuccessMsg('🏛️ Institute Tier Activated! Multi-Branch Operations, Faculty Directory, and Custom Academy Branding are now unlocked in your dashboard menu.');
+    } else if (planId === 'PRO') {
+      setSuccessMsg('🎉 Pro Tier Activated! "Tests & Results", "AI Test Paper Generator", and "Parent Portal" are now unlocked in your sidebar menu.');
     } else if (planId === 'STARTER') {
-      setSuccessMsg('Switched back to Starter Tier (₹199/mo). Pro modules are now gated.');
+      setSuccessMsg('Switched back to Starter Tier (₹199/mo). Advanced Institute & Pro modules are now gated.');
     } else {
       setSuccessMsg(`Switched to ${planId} plan.`);
     }
-    setTimeout(() => setSuccessMsg(''), 5000);
+    setTimeout(() => setSuccessMsg(''), 6000);
   };
 
   return (
@@ -197,15 +201,25 @@ export default function SubscriptionView() {
                 }}>
                   ✓ Current Active Plan
                 </div>
+              ) : p.id === 'INSTITUTE' ? (
+                <button
+                  onClick={() => handleSelectPlan('INSTITUTE')}
+                  className="btn btn-primary"
+                  style={{ width: '100%', fontSize: '0.85rem', background: 'linear-gradient(135deg, #0f766e, #0e7490)' }}
+                  title="Unlock Multi-Branch, Faculty Management, and Branding"
+                >
+                  <Sparkles size={14} />
+                  <span>Activate Institute Plan</span>
+                </button>
               ) : p.id === 'PRO' ? (
                 <button
                   onClick={() => handleSelectPlan('PRO')}
                   className="btn btn-secondary"
                   style={{ width: '100%', fontSize: '0.82rem', borderColor: '#534AB7', color: '#534AB7', background: '#EEEDFE' }}
-                  title="Test Pro features for presentation"
+                  title="Activate Pro features (AI tests & parent portal)"
                 >
                   <Sparkles size={14} />
-                  <span>⚡ Preview Pro in Demo Mode</span>
+                  <span>Activate Pro Plan</span>
                 </button>
               ) : p.id === 'STARTER' ? (
                 <button
@@ -215,21 +229,13 @@ export default function SubscriptionView() {
                 >
                   Activate Starter Plan
                 </button>
-              ) : p.id === 'FREE' ? (
+              ) : (
                 <button
                   onClick={() => handleSelectPlan('FREE')}
                   className="btn btn-secondary"
                   style={{ width: '100%', fontSize: '0.85rem' }}
                 >
                   Switch to Free
-                </button>
-              ) : (
-                <button
-                  disabled
-                  className="btn btn-secondary"
-                  style={{ width: '100%', fontSize: '0.85rem', opacity: 0.6, cursor: 'not-allowed' }}
-                >
-                  Roadmap Tier (Coming Soon)
                 </button>
               )}
             </div>
